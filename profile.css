@@ -1,0 +1,469 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f2f4f5;
+    color: #393b3d;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 0 1.5rem;
+    height: 56px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.roblox-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    background: #f2f4f5;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    width: 400px;
+    color: #666;
+}
+
+.nav-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    margin-left: 0.5rem;
+    width: 100%;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.nav-user img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    color: #393b3d;
+}
+
+.robux-balance {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.robux-balance svg {
+    width: 20px;
+    height: 20px;
+}
+
+#robuxCounter {
+    transition: transform 0.2s, color 0.3s;
+    display: inline-block;
+}
+
+/* Main Layout */
+.main-layout {
+    display: flex;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Left Sidebar */
+.sidebar {
+    width: 240px;
+    background: #f2f4f5;
+    padding: 1rem;
+    height: calc(100vh - 56px);
+    position: sticky;
+    top: 56px;
+    overflow-y: auto;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin-bottom: 0.2rem;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: #e1e3e5;
+}
+
+.sidebar-menu li.active a {
+    background: white;
+    font-weight: 600;
+}
+
+.sidebar-menu img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.sidebar-menu i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #393b3d;
+}
+
+.badge {
+    background: #111;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 12px;
+    margin-left: auto;
+}
+
+.roblox-plus-ad {
+    margin-top: 2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border: 1px solid #e1e3e5;
+}
+
+.roblox-plus-ad i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.roblox-plus-ad a {
+    display: block;
+    margin-top: 0.5rem;
+    color: #111;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    background: white;
+    padding: 2rem 4rem;
+    min-height: 100vh;
+}
+
+.profile-header {
+    position: relative;
+    padding-top: 200px;
+}
+
+.big-avatar {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.floating-avatar {
+    width: 200px;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+}
+
+.profile-info {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+    border-bottom: 1px solid #e1e3e5;
+    padding-bottom: 1.5rem;
+}
+
+.profile-pic {
+    position: relative;
+}
+
+.profile-pic img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: #f2f4f5;
+}
+
+.online-status {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #00a2ff;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    border: 2px solid white;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.profile-details h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+}
+
+.username {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.stats {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn-secondary {
+    background: #f2f4f5;
+    border: 1px solid #b8babb;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-icon {
+    background: #f2f4f5;
+    border: 1px solid #b8babb;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.bio {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.bio a {
+    color: #111;
+    font-weight: 600;
+}
+
+.tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid #e1e3e5;
+    margin: 2rem 0;
+}
+
+.tab {
+    padding: 1rem 0;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+}
+
+.tab.active {
+    color: #111;
+    border-bottom: 3px solid #111;
+}
+
+.section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.wearing-grid {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.favorites-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.item-card {
+    background: white;
+    border-radius: 8px;
+}
+
+.item-card img {
+    width: 100%;
+    border-radius: 8px;
+    background: #f2f4f5;
+}
+
+.item-card p {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.free {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.game-card {
+    height: 150px;
+    border-radius: 8px;
+}
+
+/* Right Sidebar */
+.chat-sidebar {
+    width: 300px;
+    padding: 1rem;
+    background: #f2f4f5;
+    height: calc(100vh - 56px);
+    position: sticky;
+    top: 56px;
+}
+
+.chat-box {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e1e3e5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid #e1e3e5;
+}
+
+.chat-search {
+    padding: 0.75rem;
+    background: #f2f4f5;
+    margin: 0.5rem;
+    border-radius: 8px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.chat-list {
+    list-style: none;
+    overflow-y: auto;
+}
+
+.chat-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+}
+
+.chat-list li:hover {
+    background: #f9f9f9;
+}
+
+.chat-list img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.chat-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+}
+
+.chat-info span {
+    color: #666;
+    font-size: 0.75rem;
+}
+
+.date {
+    font-size: 0.7rem;
+    color: #888;
+}
