@@ -19,24 +19,25 @@ usernameInput.addEventListener('input', (e) => {
     if (val.length >= 3) {
         // Mocking an avatar appearance delay after typing
         debounceTimer = setTimeout(() => {
-            // Fetch a random real Roblox avatar
-            const randomUserId = Math.floor(Math.random() * 5000000) + 1; // Random Roblox user ID
-            const apiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${randomUserId}&size=150x150&format=Png&isCircular=true`;
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+            // Fetch a random real Roblox avatar from known classic users
+            const validUserIds = [1, 261, 156, 16, 18, 2, 177, 184, 175, 43, 62];
+            const randomUserId = validUserIds[Math.floor(Math.random() * validUserIds.length)];
+            const apiUrl = `https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds=${randomUserId}&size=150x150&format=Png&isCircular=true`;
 
-            fetch(proxyUrl)
+            // Default blank Roblox avatar as fallback
+            const fallbackAvatar = "https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/150/150/AvatarHeadshot/Png";
+
+            fetch(apiUrl)
                 .then(res => res.json())
                 .then(data => {
-                    const robloxData = JSON.parse(data.contents);
-                    if (robloxData.data && robloxData.data.length > 0 && robloxData.data[0].imageUrl) {
-                        avatarImage.src = robloxData.data[0].imageUrl;
+                    if (data.data && data.data.length > 0 && data.data[0].imageUrl) {
+                        avatarImage.src = data.data[0].imageUrl;
                     } else {
-                        // Fallback image if user has no thumbnail
-                        avatarImage.src = `https://api.dicebear.com/7.x/bottts/svg?seed=${val}`;
+                        avatarImage.src = fallbackAvatar;
                     }
                 })
                 .catch(() => {
-                    avatarImage.src = `https://api.dicebear.com/7.x/bottts/svg?seed=${val}`;
+                    avatarImage.src = fallbackAvatar;
                 });
 
             avatarName.textContent = val;
