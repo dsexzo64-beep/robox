@@ -19,8 +19,26 @@ usernameInput.addEventListener('input', (e) => {
     if (val.length >= 3) {
         // Mocking an avatar appearance delay after typing
         debounceTimer = setTimeout(() => {
-            // Using DiceBear to generate a dynamic cute avatar based on the typed username
-            avatarImage.src = `https://api.dicebear.com/7.x/bottts/svg?seed=${val}`;
+            // Fetch a random real Roblox avatar
+            const randomUserId = Math.floor(Math.random() * 5000000) + 1; // Random Roblox user ID
+            const apiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${randomUserId}&size=150x150&format=Png&isCircular=true`;
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+
+            fetch(proxyUrl)
+                .then(res => res.json())
+                .then(data => {
+                    const robloxData = JSON.parse(data.contents);
+                    if (robloxData.data && robloxData.data.length > 0 && robloxData.data[0].imageUrl) {
+                        avatarImage.src = robloxData.data[0].imageUrl;
+                    } else {
+                        // Fallback image if user has no thumbnail
+                        avatarImage.src = `https://api.dicebear.com/7.x/bottts/svg?seed=${val}`;
+                    }
+                })
+                .catch(() => {
+                    avatarImage.src = `https://api.dicebear.com/7.x/bottts/svg?seed=${val}`;
+                });
+
             avatarName.textContent = val;
             avatarPreview.style.display = 'flex';
         }, 600);
