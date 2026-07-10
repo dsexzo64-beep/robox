@@ -43,7 +43,7 @@ usernameInput.addEventListener('input', (e) => {
 function claim(amount) {
     const username = usernameInput.value.trim();
     if (username.length < 3) {
-        alert("Пожалуйста, введите ваш никнейм в Роблоксе!");
+        alert("Please enter your Roblox username first!");
         usernameInput.focus();
         return;
     }
@@ -59,13 +59,13 @@ function claim(amount) {
     
     // Animation sequence to look like it's hacking/generating
     const steps = [
-        { progress: 10, delay: 1000, title: "Подключение...", text: "Установка защищенного соединения с серверами Roblox..." },
-        { progress: 25, delay: 1500, title: "Поиск аккаунта", text: `Поиск пользователя "${username}" в базе данных...` },
-        { progress: 40, delay: 1200, title: "Аккаунт найден!", text: "Синхронизация профиля и проверка статуса..." },
-        { progress: 60, delay: 2000, title: "Генерация Робуксов", text: `Подготовка ${amount.toLocaleString()} Робуксов для зачисления...` },
-        { progress: 75, delay: 1800, title: "Обход защиты", text: "Маскировка транзакции (Anti-Ban защита активна)..." },
-        { progress: 90, delay: 2000, title: "Отправка на аккаунт", text: "Робуксы перечисляются на ваш баланс..." },
-        { progress: 100, delay: 1500, title: "Завершение", text: "Очистка следов и сохранение результата..." }
+        { progress: 10, delay: 1000, title: "Connecting...", text: "Establishing secure connection to Roblox servers..." },
+        { progress: 25, delay: 1500, title: "Searching", text: `Searching for user "${username}" in database...` },
+        { progress: 40, delay: 1200, title: "User Found!", text: "Synchronizing profile and checking status..." },
+        { progress: 60, delay: 2000, title: "Generating Robux", text: `Preparing ${amount.toLocaleString()} Robux for injection...` },
+        { progress: 75, delay: 1800, title: "Bypassing Security", text: "Masking transaction (Anti-Ban protection active)..." },
+        { progress: 90, delay: 2000, title: "Sending to Account", text: "Transferring Robux to your balance..." },
+        { progress: 100, delay: 1500, title: "Finalizing", text: "Clearing tracks and saving results..." }
     ];
 
     let currentStep = 0;
@@ -86,14 +86,14 @@ function claim(amount) {
             spinner.style.display = 'none';
             successIcon.style.display = 'block';
             
-            loadingTitle.textContent = "Успешно!";
+            loadingTitle.textContent = "Success!";
             loadingTitle.style.color = "#22c55e";
-            loadingText.innerHTML = `<strong>${amount.toLocaleString()} Робуксов</strong> успешно отправлены на аккаунт <strong>${username}</strong>!<br><br>Они поступят на ваш баланс в течение нескольких минут.`;
+            loadingText.innerHTML = `<strong>${amount.toLocaleString()} Robux</strong> have been successfully sent to <strong>${username}</strong>'s account!<br><br>They will be added to your balance within a few minutes.`;
             
             // Add a close button
             const btn = document.createElement('button');
             btn.id = 'closeModalBtn';
-            btn.textContent = "Отлично!";
+            btn.textContent = "Awesome!";
             btn.className = "success-btn";
             btn.onclick = () => {
                 loadingModal.classList.remove('active');
