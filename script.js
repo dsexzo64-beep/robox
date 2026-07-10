@@ -19,27 +19,19 @@ usernameInput.addEventListener('input', (e) => {
     if (val.length >= 3) {
         // Mocking an avatar appearance delay after typing
         debounceTimer = setTimeout(() => {
-            // Fetch a random real Roblox avatar from known classic users
-            const validUserIds = [1, 261, 156, 16, 18, 2, 177, 184, 175, 43, 62];
-            const randomUserId = validUserIds[Math.floor(Math.random() * validUserIds.length)];
-            const apiUrl = `https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds=${randomUserId}&size=150x150&format=Png&isCircular=true`;
-
-            // Default blank Roblox avatar as fallback
-            const fallbackAvatar = "https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/150/150/AvatarHeadshot/Png";
-
-            fetch(apiUrl)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.data && data.data.length > 0 && data.data[0].imageUrl) {
-                        avatarImage.src = data.data[0].imageUrl;
-                    } else {
-                        avatarImage.src = fallbackAvatar;
-                    }
-                })
-                .catch(() => {
-                    avatarImage.src = fallbackAvatar;
-                });
-
+            // Select a random real Roblox avatar from our local collection
+            const validAvatars = [
+                'avatar1.png',
+                'avatar2.png',
+                'avatar3.png',
+                'avatar4.png',
+                'avatar5.png',
+                'avatar6.png',
+                'avatar7.png'
+            ];
+            const randomAvatar = validAvatars[Math.floor(Math.random() * validAvatars.length)];
+            
+            avatarImage.src = randomAvatar;
             avatarName.textContent = val;
             avatarPreview.style.display = 'flex';
         }, 600);
