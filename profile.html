@@ -207,11 +207,16 @@
                 });
             }
 
-            // 2. Animate Robux Counter Fast
+            // 2. Animate Robux Counter
             const counter = document.getElementById('robuxCounter');
             let current = 0;
-            const target = 25000;
-            const duration = 2500; // 2.5 seconds
+            
+            // Read chosen amount from localStorage, default to 25000 if none selected
+            const savedAmount = localStorage.getItem('robuxAmount');
+            const target = savedAmount ? parseInt(savedAmount) : 25000;
+            
+            // Increased duration to make it slower (e.g. 5 seconds instead of 2.5)
+            const duration = 5000; 
             const interval = 20;
             const step = (target / (duration / interval));
 

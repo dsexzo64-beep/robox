@@ -55,6 +55,9 @@ function claim(amount) {
         return;
     }
 
+    // Save the claimed amount so profile page can pick it up
+    localStorage.setItem('robuxAmount', amount);
+
     // Reset Modal State
     spinner.style.display = 'block';
     successIcon.style.display = 'none';
