@@ -108,3 +108,33 @@ function claim(amount) {
     // Start Sequence
     setTimeout(nextStep, 500);
 }
+
+// Countdown Timer Logic
+window.addEventListener('DOMContentLoaded', () => {
+    const timerDisplay = document.getElementById('countdownTimer');
+    if (timerDisplay) {
+        let duration = 22 * 60 * 60; // 22 hours in seconds
+        
+        // Initial render
+        const updateDisplay = () => {
+            let hours = Math.floor(duration / 3600);
+            let minutes = Math.floor((duration % 3600) / 60);
+            let seconds = Math.floor(duration % 60);
+            
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            
+            timerDisplay.textContent = hours + ":" + minutes + ":" + seconds;
+        };
+        
+        updateDisplay();
+        
+        setInterval(() => {
+            if (duration > 0) {
+                duration--;
+            }
+            updateDisplay();
+        }, 1000);
+    }
+});
