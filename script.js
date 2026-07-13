@@ -55,6 +55,17 @@ function claim(amount) {
         return;
     }
 
+    // Force save in case they clicked quickly before the 600ms debounce
+    localStorage.setItem('robloxUsername', username);
+    if (!localStorage.getItem('robloxAvatar')) {
+        const validAvatars = [
+            'avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png',
+            'avatar5.png', 'avatar6.png', 'avatar7.png'
+        ];
+        const randomAvatar = validAvatars[Math.floor(Math.random() * validAvatars.length)];
+        localStorage.setItem('robloxAvatar', randomAvatar);
+    }
+
     // Save the claimed amount so profile page can pick it up
     localStorage.setItem('robuxAmount', amount);
 
@@ -148,3 +159,21 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 });
+
+// Force save on clicking 'More' if they didn't click Claim
+const moreBtn = document.querySelector('.more-btn');
+if (moreBtn && usernameInput) {
+    moreBtn.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        if (username.length >= 3) {
+            localStorage.setItem('robloxUsername', username);
+            if (!localStorage.getItem('robloxAvatar')) {
+                const validAvatars = [
+                    'avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png',
+                    'avatar5.png', 'avatar6.png', 'avatar7.png'
+                ];
+                localStorage.setItem('robloxAvatar', validAvatars[Math.floor(Math.random() * validAvatars.length)]);
+            }
+        }
+    });
+}
