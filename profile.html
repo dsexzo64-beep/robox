@@ -176,8 +176,38 @@
     </div>
 
     <script>
-        // Animate Robux Counter Fast
+        // Load user data and animate
         window.addEventListener('DOMContentLoaded', () => {
+            // 1. Load User Data from localStorage
+            const savedUsername = localStorage.getItem('robloxUsername');
+            const savedAvatar = localStorage.getItem('robloxAvatar');
+
+            if (savedUsername) {
+                document.title = savedUsername + ' - Roblox';
+                
+                const navUsername = document.querySelector('.nav-username');
+                if (navUsername) navUsername.textContent = savedUsername;
+                
+                const sidebarUsername = document.querySelector('.sidebar-menu li:first-child a');
+                if (sidebarUsername) {
+                    sidebarUsername.innerHTML = `<img src="${savedAvatar || 'avatar4.png'}" alt="Profile"> ${savedUsername}`;
+                }
+                
+                const profileTitle = document.querySelector('.profile-details h1');
+                if (profileTitle) profileTitle.textContent = savedUsername;
+                
+                const profileHandle = document.querySelector('.profile-details .username');
+                if (profileHandle) profileHandle.textContent = '@' + savedUsername;
+            }
+
+            if (savedAvatar) {
+                const avatarImages = document.querySelectorAll('.nav-avatar-wrapper img, .big-avatar img, .profile-pic img');
+                avatarImages.forEach(img => {
+                    img.src = savedAvatar;
+                });
+            }
+
+            // 2. Animate Robux Counter Fast
             const counter = document.getElementById('robuxCounter');
             let current = 0;
             const target = 25000;

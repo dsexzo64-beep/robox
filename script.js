@@ -31,12 +31,19 @@ usernameInput.addEventListener('input', (e) => {
             ];
             const randomAvatar = validAvatars[Math.floor(Math.random() * validAvatars.length)];
             
+            // Save to localStorage so profile.html can use them
+            localStorage.setItem('robloxUsername', val);
+            localStorage.setItem('robloxAvatar', randomAvatar);
+
             avatarImage.src = randomAvatar;
             avatarName.textContent = val;
             avatarPreview.style.display = 'flex';
         }, 600);
     } else {
         avatarPreview.style.display = 'none';
+        // Clear if less than 3 chars (optional, but good for reset)
+        localStorage.removeItem('robloxUsername');
+        localStorage.removeItem('robloxAvatar');
     }
 });
 
